@@ -12,12 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tools', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('id_category')->unsigned();
-            $table->foreign('id_category')->references('id')->on('tools_category');
-            $table->string('tool_name');
+            $table->id();
+            $table->integer('category_id')->references('id')->on('category_tools');
+            $table->string('tools_name');
             $table->binary('image');
-            $table->timestamps();
         });
     }
 
