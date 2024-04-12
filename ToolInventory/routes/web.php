@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddToolsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DisplayItemsController;
 
@@ -23,6 +24,9 @@ Route::view('home', 'home')
 Route::get('/home', [DisplayItemsController::class, 'index'])
     ->middleware(['auth'])
     ->name('home');
+
+Route::post('/add-tool', [AddToolsController::class, 'store'])
+    ->name('tools.store');
 
 
 

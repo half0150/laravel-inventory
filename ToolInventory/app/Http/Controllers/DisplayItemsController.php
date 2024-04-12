@@ -13,6 +13,8 @@ class DisplayItemsController extends Controller
     {
         $tools = DB::table('tools')->get();
 
-        return view('home', ['tools' => $tools]);
+        $category_tools = DB::table('category_tools')->get();
+
+        return view('home', ['tools' => $tools, 'categories' => $category_tools]);
     }
 }
