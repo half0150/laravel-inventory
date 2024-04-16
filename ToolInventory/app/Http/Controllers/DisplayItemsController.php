@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
-
-
+use App\Models\Tool;
+use App\Models\CategoryTool;
 
 class DisplayItemsController extends Controller
 {
     public function index(): View
     {
-        $tools = DB::table('tools')->get();
+        $tools = Tool::with('categoryTool')->get();
 
-        $category_tools = DB::table('category_tools')->get();
+        $category_tools = CategoryTool::all();
 
         return view('home', ['tools' => $tools, 'categories' => $category_tools]);
     }

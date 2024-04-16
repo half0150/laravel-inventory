@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddToolsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DisplayItemsController;
+use App\Http\Controllers\AddCategoryController;
 
 
 
@@ -28,7 +29,7 @@ Route::get('/home', [DisplayItemsController::class, 'index'])
 Route::post('/add-tool', [AddToolsController::class, 'store'])
     ->name('tools.store');
 
-
+Route::post('/categories', [AddCategoryController::class, 'store'])->name('categories.store');
 
 
 require __DIR__ . '/auth.php';

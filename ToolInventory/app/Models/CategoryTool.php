@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CategoryTool extends Model
 {
-    use HasFactory;
+    public $timestamps = false;
+
+    protected $fillable = ['category'];
 }
