@@ -20,19 +20,23 @@ class AddToolsController extends Controller
         $validatedData = $request->validate([
             'tool_name' => 'required|string',
             'category_id' => 'required|exists:category_tools,id',
-            'image' => ' required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $tool = new Tool();
         $tool->tool_name = $validatedData['tool_name'];
         $tool->category_id = $validatedData['category_id'];
-        $tool->image = $validatedData['image'];
+
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->storeAs('public/images', $imageName);
+            $tool->image = $imageName;
+        }
 
         $tool->save();
 
         return redirect()->back()->with('success', 'Tool added successfully!');
     }
-
 
     public function edit($id)
     {

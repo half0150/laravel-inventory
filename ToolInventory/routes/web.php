@@ -32,4 +32,7 @@ Route::post('/add-tool', [AddToolsController::class, 'store'])
 Route::post('/categories', [AddCategoryController::class, 'store'])->name('categories.store');
 
 
+Route::post('/upload-image', 'App\Http\Controllers\ImageUploadController@store');
+
+
 require __DIR__ . '/auth.php';

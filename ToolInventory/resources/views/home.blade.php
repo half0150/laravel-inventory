@@ -21,7 +21,7 @@
                 </form>
 
                 <!-- Tool Creation Form -->
-                <form action="{{ route('tools.store') }}" method="POST">
+                <form action="{{ route('tools.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-4">
                         <label for="category_id" class="block text-sm font-medium text-gray-700">Category</label>
@@ -56,11 +56,18 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">{{$tool->categoryTool->category}}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{$tool->tool_name}}</td>
-                            <td class="px-6 py-4 whitespace-nowrap"><img src="{{ $tool->image }}" alt="{{ $tool->tool_name }}" class="w-16 h-16"></td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                @if ($tool->image)
+                                <img src="{{ asset('storage/images/' . $tool->image) }}" alt="{{ $tool->tool_name }}" class="w-16 h-16">
+                                @else
+                                No Image Available
+                                @endif
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
+
             </div>
         </div>
     </div>
